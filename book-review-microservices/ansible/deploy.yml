@@ -1,0 +1,13 @@
+- name: Deploy Microservices with Docker
+  hosts: localhost
+  tasks:
+    - name: Pull latest code
+      git:
+        repo: https://github.com/XBorg04/book-review-microservices.git
+        dest: /home/ubuntu/book-review-microservices
+        force: yes
+
+    - name: Build and run containers
+      shell: docker-compose up --build -d
+      args:
+        chdir: /home/ubuntu/book-review-microservices

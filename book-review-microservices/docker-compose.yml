@@ -1,0 +1,19 @@
+version: '3'
+services:
+  user1:
+    build: ./user-service
+    ports:
+      - "5001:5000"
+  user2:
+    build: ./user-service
+    ports:
+      - "5002:5000"
+  nginx:
+    image: nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - user1
+      - user2
